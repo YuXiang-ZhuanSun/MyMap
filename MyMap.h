@@ -69,50 +69,50 @@ class  MyMap {
 
 		void rotate(MyPair<t1, t2>* p) {
 			MyPair<t1, t2>* parent = p->parent;
-			
-		
+
+
 
 			//1,处理p的上层
 			if (p->parent->parent) {
 				MyPair<t1, t2>* grandpa = p->parent->parent;
 				if (grandpa->left == p->parent) {
 					grandpa->left = p;
-					
+
 				} else {
 					grandpa->right = p;
 				}
 				p->parent = grandpa;
 				parent->parent = p;
-			}else{
-				root=p;	
-				p->parent=NULL;
+			} else {
+				root = p;
+				p->parent = NULL;
 			}
 
 			//2,处理p的下层
 			if (p == parent->right ) {
 				//左旋
-				
+
 				MyPair<t1, t2>* rot = p->left;
 				p->left = parent;
-				parent->parent=p;
-				parent->right=rot;
-				if(rot){
-					rot->parent = parent;			
-				}				
+				parent->parent = p;
+				parent->right = rot;
+				if (rot) {
+					rot->parent = parent;
+				}
 			} else if (p == parent->left) {
 				//右旋
 				MyPair<t1, t2>* rot = p->right;
 				p->right = parent;
-				parent->parent=p;
+				parent->parent = p;
 				parent->left = rot;
-				if(rot){
+				if (rot) {
 					rot->parent = parent;
 				}
 			}
 			return;
 		}
 
-		void balance(MyPair<t1, t2>* p) { 
+		void balance(MyPair<t1, t2>* p) {
 			if (p == root) {
 				p->color = BLACK;
 				return ;
@@ -124,7 +124,7 @@ class  MyMap {
 
 			//父亲一定是红色，爷爷一定是黑色
 			MyPair<t1, t2>* grandpa = p->parent->parent;
-			
+
 			//确定叔叔
 			MyPair<t1, t2>* uncle;
 			if (grandpa->left == p->parent) {
@@ -132,7 +132,7 @@ class  MyMap {
 			} else {
 				uncle = grandpa->left;
 			}
-			
+
 			//情况1：爸爸红，爷爷黑，叔叔红（有叔叔）   情况1需要继续平衡
 			//把爷爷变成红色的，叔叔变成黑色的
 			if (uncle && uncle->color == RED) {
@@ -235,14 +235,14 @@ class  MyMap {
 
 			return 1;
 		}
-		
-		
-		void in_order(){
-			in_order_travesal(root);		
+
+
+		void in_order() {
+			in_order_travesal(root);
 		}
-		
-		void in_order_travesal(MyPair<t1,t2>* r){
-			if(r){
+
+		void in_order_travesal(MyPair<t1, t2>* r) {
+			if (r) {
 				in_order_travesal(r->left);
 				r->print();
 				in_order_travesal(r->right);
