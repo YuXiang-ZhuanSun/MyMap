@@ -6,7 +6,7 @@ int main() {
 
 	clock_t begin = clock();
 	
-		
+	//删除MyMap.h的217行，可测试BST情形建树时间 
 	MyMap<int, int> * m = new MyMap<int, int>();
 	for (int i = 1; i <= 100000; i++) {
 		m->insert_MyPair(i, 1000 - i);
